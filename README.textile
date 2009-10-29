@@ -1,13 +1,36 @@
-TrapDoor
-========
+h1. Trap Door - Reverse Captcha for Rails
 
-Introduction goes here.
+Unobtrusive Captcha for your Rails forms. Trap Door works by adding a hidden "honeypot" field to your forms that only a spam bot will fill out. A before filter checks for the presence of this field and banishes bots to a "spam trap":http://en.wikipedia.org/wiki/User:Mike_Rosoft/Spambot.
+
+h2. Installation
+
+@script/plugin install git://github.com/hardbap/trap_door.git@
+
+h2. Using Trap Door
+
+h3. In your view
+
+<pre><code>
+    <% form_for(@post) do |form| %>
+        <%= trap_door_field %>
+        
+        # the rest of your form...
+</code></pre>
+
+h3. In your controller
+
+<pre><code>
+    class ProjectsController < ApplicationController
+        trap_door :only => :create
+        
+        # the rest of your controller...
+</code></pre>
+
+h2. Configuration
+
+By default Trap Door names the hidden_field @:affiliate_id@. Obviously this won't work for everyone so you can change the field name by creating an initializer in @config/initializers@ and telling Trap Door the name it should use for the honeypot field:
+
+@TrapDoor.honeypot_field_name = :go_away@
 
 
-Example
-=======
-
-Example goes here.
-
-
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 Mike Breen, released under the MIT license
