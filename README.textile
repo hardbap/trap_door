@@ -20,7 +20,7 @@ h3. In your view
 h3. In your controller
 
 <pre><code>
-    class ProjectsController < ApplicationController
+    class PostsController < ApplicationController
         trap_door :only => :create
         
         # the rest of your controller...
