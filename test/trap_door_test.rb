@@ -28,7 +28,7 @@ class TrapDoorTest < ActionController::TestCase
     get :create
     assert_response :success
   end
-  
+
   test "should not redirect if honypot param is blank" do
     get :create, :affiliate_id => ""
     assert_response :success
@@ -48,17 +48,21 @@ end
 
 class TrapDoorHelperTest < ActionView::TestCase
   tests TrapDoor::TrapDoorHelper
-  
+
   def setup
     TrapDoor.honeypot_field_name = :affiliate_id
   end
 
   test "should render the trap door field" do
-    assert_dom_equal('<input name="affiliate_id" id="affiliate_id" value="" type="hidden" />', trap_door_field)
+    assert_dom_equal('<input name="affiliate_id" id="affiliate_id" value="" type="text" style="display:none;" />', trap_door_field)
   end
 
   test "should use the user defined honeypot field name" do
     TrapDoor.honeypot_field_name = :spambot_id
-    assert_dom_equal('<input name="spambot_id" id="spambot_id" value="" type="hidden" />', trap_door_field)
+    assert_dom_equal('<input name="spambot_id" id="spambot_id" value="" type="text" style="display:none;" />', trap_door_field)
+  end
+
+  test "should not override user supplied options" do
+    assert_dom_equal('<input name="affiliate_id" id="affiliate_id" value="" type="text" style="font:red;" />', trap_door_field(:style => 'font:red;'))
   end
 end

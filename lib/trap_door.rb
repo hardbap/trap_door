@@ -1,6 +1,6 @@
 module TrapDoor
   mattr_accessor :honeypot_field_name
-  
+
   def self.included(controller)
     self.honeypot_field_name = honeypot_field_name || :affiliate_id
     controller.extend(ClassMethods)
@@ -20,10 +20,11 @@ module TrapDoor
       redirect_to 'http://en.wikipedia.org/wiki/User:Mike_Rosoft/Spambot' unless params[honeypot_field_name.to_sym].blank?
     end
   end
-  
+
   module TrapDoorHelper
     def trap_door_field(options = {})
-      hidden_field_tag(TrapDoor.honeypot_field_name, '', options)
+      options = options.reverse_merge({:style => 'display:none;'})
+      text_field_tag(TrapDoor.honeypot_field_name, '', options)
     end
   end
 end
