@@ -33,4 +33,7 @@ By default Trap Door names the hidden_field @:affiliate_id@. Obviously this won'
 @TrapDoor.honeypot_field_name = :go_away@
 
 
-Copyright (c) 2009 Mike Breen, released under the MIT license
+Copyright (c) 2009 Mike Breen
+Copyright (c) 2013 Philippe Vaucher
+
+Released under the MIT license

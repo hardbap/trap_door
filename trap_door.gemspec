@@ -7,8 +7,8 @@ require "trap_door/version"
 Gem::Specification.new do |s|
   s.name        = "trap_door"
   s.version     = TrapDoor::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Mike Breen", "Philippe Vaucher"]
+  s.email       = [""]
   s.homepage    = "https://github.com/hardbap/trap_door"
   s.summary     = "Reverse Captcha for Rails."
   s.description = "Unobtrusive Captcha for your Rails forms. Trap Door works by adding a hidden “honeypot” field to your forms that only a spam bot will fill out. A before filter checks for the presence of this field and banishes bots to a spam trap."
