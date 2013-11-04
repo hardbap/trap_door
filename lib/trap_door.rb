@@ -1,15 +1,18 @@
-module TrapDoor
-  mattr_accessor :honeypot_field_name
+require 'active_support/concern'
 
-  def self.included(controller)
-    self.honeypot_field_name = honeypot_field_name || :affiliate_id
-    controller.extend(ClassMethods)
+module TrapDoor
+  extend ActiveSupport::Concern
+
+  mattr_accessor :honeypot_field_name
+  self.honeypot_field_name = :affiliate_id
+
+  included do
   end
 
   module ClassMethods
     def trap_door(options = {})
-      send :include, InstanceMethods
       before_filter :check_params, :only => options[:only], :except => options[:except]
+      include TrapDoor::InstanceMethods
     end
   end
 
@@ -17,14 +20,17 @@ module TrapDoor
     private
 
     def check_params
-      redirect_to 'http://en.wikipedia.org/wiki/User:Mike_Rosoft/Spambot' unless params[honeypot_field_name.to_sym].blank?
+      redirect_to 'http://en.wikipedia.org/wiki/User:Mike_Rosoft/Spambot' unless params[TrapDoor.honeypot_field_name.to_sym].blank?
     end
   end
 
   module TrapDoorHelper
     def trap_door_field(options = {})
-      options = options.reverse_merge({:style => 'display:none;'})
+      options = {:style => 'display:none;'}.merge(options)
       text_field_tag(TrapDoor.honeypot_field_name, '', options)
     end
   end
 end
+
+ActionController::Base.send :include, TrapDoor
+ActionView::Base.send :include, TrapDoor::TrapDoorHelper

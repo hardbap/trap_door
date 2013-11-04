@@ -4,7 +4,7 @@ Unobtrusive Captcha for your Rails forms. Trap Door works by adding a hidden "ho
 
 h2. Installation
 
-@script/plugin install git://github.com/hardbap/trap_door.git@
+@gem 'trap_door', :git => 'git://github.com/hardbap/trap_door.git'@
 
 h2. Using Trap Door
 
@@ -13,7 +13,7 @@ h3. In your view
 <pre><code>
     <% form_for(@post) do |form| %>
         <%= trap_door_field %>
-        
+
         # the rest of your form...
 </code></pre>
 
@@ -22,7 +22,7 @@ h3. In your controller
 <pre><code>
     class PostController < ApplicationController
         trap_door :only => :create
-        
+
         # the rest of your controller...
 </code></pre>
 
@@ -33,4 +33,7 @@ By default Trap Door names the hidden_field @:affiliate_id@. Obviously this won'
 @TrapDoor.honeypot_field_name = :go_away@
 
 
-Copyright (c) 2009 Mike Breen, released under the MIT license
+Copyright (c) 2009 Mike Breen
+Copyright (c) 2013 Philippe Vaucher
+
+Released under the MIT license
