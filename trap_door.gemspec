@@ -9,11 +9,11 @@ Gem::Specification.new do |s|
   s.version     = TrapDoor::VERSION
   s.authors     = ["TODO: Your name"]
   s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of TrapDoor."
-  s.description = "TODO: Description of TrapDoor."
+  s.homepage    = "https://github.com/hardbap/trap_door"
+  s.summary     = "Reverse Captcha for Rails."
+  s.description = "Unobtrusive Captcha for your Rails forms. Trap Door works by adding a hidden “honeypot” field to your forms that only a spam bot will fill out. A before filter checks for the presence of this field and banishes bots to a spam trap."
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.textile"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.0.0"
