@@ -1,4 +1,4 @@
-h1. This repository was for Rails 2.x and is no longer actively maintained. The Rails 4.x version can be found at "here.":https://github.com/Silex/trap_door
+h1. This repository was for Rails 2.x and is no longer actively maintained. The Rails 4.x version can be found "here.":https://github.com/Silex/trap_door
 
 
 
